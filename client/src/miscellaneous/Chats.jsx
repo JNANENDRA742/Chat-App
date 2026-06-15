@@ -70,7 +70,7 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
   const handleChatSelect = async (chat) => {
     try {
       await axios.put(
-        "http://10.48.202.230:5000/api/chat/reset-unread",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/reset-unread",
         { chatId: chat._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -99,7 +99,7 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
 
     try {
       const response = await axios.get(
-        `http://10.48.202.230:5000/api/user?search=${query}`,
+        `https://chat-app-backend-xpug.onrender.com/api/user?search=${query}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -124,7 +124,7 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
   const createNewChat = async (userId) => {
     try {
       const response = await axios.post(
-        "http://10.48.202.230:5000/api/chat",
+        "https://chat-app-backend-xpug.onrender.com/api/chat",
         { userId },
         {
           headers: {
@@ -177,7 +177,7 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
       const userIds = groupMembers.map(member => member._id);
 
       const response = await axios.post(
-        "http://10.48.202.230:5000/api/chat/group",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/group",
         {
           name: groupName,
           users: userIds,
@@ -224,7 +224,7 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
   useEffect(() => {
     if (!token) return;
 
-    const newSocket = io("http://10.48.202.230:5000", {
+    const newSocket = io("https://chat-app-backend-xpug.onrender.com", {
       transports: ["websocket"],
       withCredentials: true,
     });
@@ -288,10 +288,10 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
 
       try {
         const [chatsRes, unreadRes] = await Promise.all([
-          axios.get("http://10.48.202.230:5000/api/chat", {
+          axios.get("https://chat-app-backend-xpug.onrender.com/api/chat", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          axios.get("http://10.48.202.230:5000/api/chat/unread-counts", {
+          axios.get("https://chat-app-backend-xpug.onrender.com/api/chat/unread-counts", {
             headers: { Authorization: `Bearer ${token}` },
           })
         ]);

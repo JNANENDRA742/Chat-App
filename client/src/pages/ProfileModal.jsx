@@ -94,7 +94,7 @@ const ProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
       };
 
       const response = await axios.put(
-        "http://10.48.202.230:5000/api/user/profile",
+        "https://chat-app-backend-xpug.onrender.com/api/user/profile",
         updateData,
         {
           headers: {

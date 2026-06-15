@@ -68,7 +68,7 @@ const Signup = () => {
       };
 
       const response = await axios.post(
-        "http://10.48.202.230:5000/api/user/",
+        "https://chat-app-backend-xpug.onrender.com/api/user/",
         signupData
       );
 

@@ -40,7 +40,7 @@ const Login = () => {
                 email: formData.email,
                 password: formData.password
             };
-            const response = await axios.post("http://10.48.202.230:5000/api/user/login", loginData);
+            const response = await axios.post("https://chat-app-backend-xpug.onrender.com/api/user/login", loginData);
             console.log(response.data);
             showToast(response.data.message, "success");
             localStorage.setItem("token", response.data.token);

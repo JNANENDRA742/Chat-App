@@ -4,7 +4,7 @@ import { FaArrowLeft, FaPaperPlane, FaSmile, FaImage, FaUserCircle, FaTrash, FaP
 import io from "socket.io-client";
 
 const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificationUpdate }) => {
-  const ENDPOINT = "http://10.48.202.230:5000";
+  const ENDPOINT = "https://chat-app-backend-xpug.onrender.com";
   const socket = useRef(null);
 
   const [messages, setMessages] = useState([]);
@@ -88,7 +88,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     
     try {
       await axios.put(
-        "http://10.48.202.230:5000/api/chat/reset-unread",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/reset-unread",
         { chatId: selectedChat._id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -109,7 +109,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     setLoadingMessages(true);
     try {
       const response = await axios.get(
-        `http://10.48.202.230:5000/api/message/${selectedChat._id}`,
+        `https://chat-app-backend-xpug.onrender.com/api/message/${selectedChat._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -142,7 +142,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     setSending(true);
     try {
       const response = await axios.post(
-        "http://10.48.202.230:5000/api/message",
+        "https://chat-app-backend-xpug.onrender.com/api/message",
         {
           content: newMessage,
           chatId: selectedChat._id,
@@ -346,7 +346,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     if (!selectedChat?._id) return;
     
     try {
-      const response = await axios.get(`http://10.48.202.230:5000/api/chat/group/${selectedChat._id}`, {
+      const response = await axios.get(`https://chat-app-backend-xpug.onrender.com/api/chat/group/${selectedChat._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -363,7 +363,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
   const fetchAvailableUsers = async () => {
     try {
       setLoadingUsers(true);
-      const response = await axios.get("http://10.48.202.230:5000/api/user", {
+      const response = await axios.get("https://chat-app-backend-xpug.onrender.com/api/user", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -402,7 +402,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     setRemovingMember(true);
     try {
       const response = await axios.put(
-        "http://10.48.202.230:5000/api/chat/group/remove",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/group/remove",
         {
           chatId: selectedChat._id,
           userId: userId,
@@ -436,7 +436,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     setAddingMembers(true);
     try {
       const response = await axios.put(
-        "http://10.48.202.230:5000/api/chat/group/add",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/group/add",
         {
           chatId: selectedChat._id,
           userIds: selectedUsers.map(user => user._id),
@@ -479,7 +479,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     setRenamingGroup(true);
     try {
       const response = await axios.put(
-        "http://10.48.202.230:5000/api/chat/group/rename",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/group/rename",
         {
           chatId: selectedChat._id,
           chatName: newGroupName,
@@ -513,7 +513,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
     setLeavingGroup(true);
     try {
       await axios.put(
-        "http://10.48.202.230:5000/api/chat/group/leave",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/group/leave",
         {
           chatId: selectedChat._id,
         },
@@ -543,7 +543,7 @@ const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate, onNotificatio
   const handleDeleteGroup = async () => {
     setDeletingGroup(true);
     try {
-      await axios.delete(`http://10.48.202.230:5000/api/chat/group/${selectedChat._id}`, {
+      await axios.delete(`https://chat-app-backend-xpug.onrender.com/api/chat/group/${selectedChat._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -1066,7 +1066,7 @@ export default ChattingPage;
 // import io from "socket.io-client";
 
 // const ChattingPage = ({ selectedChat, onBack, token, onChatUpdate }) => {
-//   const ENDPOINT = "http://10.48.202.230:5000";
+//   const ENDPOINT = "https://chat-app-backend-xpug.onrender.com";
 //   const socket = useRef(null);
 
 //   const [messages, setMessages] = useState([]);
@@ -1154,7 +1154,7 @@ export default ChattingPage;
 //     setLoadingMessages(true);
 //     try {
 //       const response = await axios.get(
-//         `http://10.48.202.230:5000/api/message/${selectedChat._id}`,
+//         `https://chat-app-backend-xpug.onrender.com/api/message/${selectedChat._id}`,
 //         {
 //           headers: {
 //             Authorization: `Bearer ${token}`,
@@ -1188,7 +1188,7 @@ export default ChattingPage;
 //     setSending(true);
 //     try {
 //       const response = await axios.post(
-//         "http://10.48.202.230:5000/api/message",
+//         "https://chat-app-backend-xpug.onrender.com/api/message",
 //         {
 //           content: newMessage,
 //           chatId: selectedChat._id,
@@ -1264,7 +1264,7 @@ export default ChattingPage;
 //   // Fetch available users for adding to group
 //   const fetchAvailableUsers = async () => {
 //     try {
-//       const response = await axios.get("http://10.48.202.230:5000/api/user", {
+//       const response = await axios.get("https://chat-app-backend-xpug.onrender.com/api/user", {
 //         headers: {
 //           Authorization: `Bearer ${token}`,
 //         },
@@ -1287,7 +1287,7 @@ export default ChattingPage;
 //     setAddingMembers(true);
 //     try {
 //       const response = await axios.put(
-//         `http://10.48.202.230:5000/api/chat/group/add`,
+//         `https://chat-app-backend-xpug.onrender.com/api/chat/group/add`,
 //         {
 //           chatId: selectedChat._id,
 //           userIds: selectedUsers,
@@ -1332,7 +1332,7 @@ export default ChattingPage;
 //     setRemovingMember(true);
 //     try {
 //       const response = await axios.put(
-//         `http://10.48.202.230:5000/api/chat/group/remove`,
+//         `https://chat-app-backend-xpug.onrender.com/api/chat/group/remove`,
 //         {
 //           chatId: selectedChat._id,
 //           userId: userId,
@@ -1380,7 +1380,7 @@ export default ChattingPage;
 //     setUpdatingGroup(true);
 //     try {
 //       const response = await axios.put(
-//         `http://10.48.202.230:5000/api/chat/group/rename`,
+//         `https://chat-app-backend-xpug.onrender.com/api/chat/group/rename`,
 //         {
 //           chatId: selectedChat._id,
 //           chatName: newGroupName,
@@ -1418,7 +1418,7 @@ export default ChattingPage;
     
 //     try {
 //       const response = await axios.put(
-//         `http://10.48.202.230:5000/api/chat/group/leave`,
+//         `https://chat-app-backend-xpug.onrender.com/api/chat/group/leave`,
 //         {
 //           chatId: selectedChat._id,
 //         },
@@ -1447,7 +1447,7 @@ export default ChattingPage;
 //     if (!window.confirm("Are you sure you want to delete this group? This action cannot be undone!")) return;
     
 //     try {
-//       await axios.delete(`http://10.48.202.230:5000/api/chat/group/${selectedChat._id}`, {
+//       await axios.delete(`https://chat-app-backend-xpug.onrender.com/api/chat/group/${selectedChat._id}`, {
 //         headers: {
 //           Authorization: `Bearer ${token}`,
 //         },

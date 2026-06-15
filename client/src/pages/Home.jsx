@@ -37,7 +37,7 @@ const Home = () => {
   const fetchTotalUnread = async () => {
     try {
       const response = await axios.get(
-        "http://10.48.202.230:5000/api/chat/total-unread",
+        "https://chat-app-backend-xpug.onrender.com/api/chat/total-unread",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setTotalUnread(response.data.totalUnread);

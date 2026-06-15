@@ -25,7 +25,7 @@ const Navbar = ({ totalUnread = 0}) => {
 
       try {
         const response = await axios.get(
-          "http://10.48.202.230:5000/api/user/profile",
+          "https://chat-app-backend-xpug.onrender.com/api/user/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,
