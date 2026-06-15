@@ -538,7 +538,7 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
                         )}
                         <div>
                           <h3 className="font-medium text-gray-900">{user.name}</h3>
-                          <p className="text-xs text-gray-500">{user.email}</p>
+                          {/* <p className="text-xs text-gray-500">{user.email}</p> */}
                         </div>
                       </div>
                       <FaPlus className="text-green-500 text-sm" />
@@ -606,7 +606,7 @@ const Chats = ({ selectedChat, onChatSelect, token: propToken, onNotificationUpd
                       )}
                       <div>
                         <h3 className="font-medium text-gray-900">{user.name}</h3>
-                        <p className="text-xs text-gray-500">{user.email}</p>
+                        {/* <p className="text-xs text-gray-500">{user.email}</p> */}
                       </div>
                     </div>
                   ))}
