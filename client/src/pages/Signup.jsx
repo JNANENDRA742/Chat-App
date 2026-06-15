@@ -50,19 +50,10 @@ const Signup = () => {
     });
   };
   
-  const convertToBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
-  };
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       let profilePictureUrl = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg";
       
@@ -84,13 +75,13 @@ const Signup = () => {
 
       console.log(response.data);
       showToast(response.data.message, "success");
-      clearForm();
       
       setTimeout(() => {
         setIsLoading(false);
         navigate("/");
       }, 1500);
       
+      clearForm();
     } catch (error) {
       console.log(error);
       showToast(
@@ -101,19 +92,17 @@ const Signup = () => {
     }
   };
 
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
   return (
-    <div className='min-h-screen w-full bg-gray-100 shadow-lg flex items-center justify-center relative'>
-      {/* Loading Overlay */}
-      {isLoading && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-8 flex flex-col items-center gap-4 shadow-xl">
-            <FaSpinner className="animate-spin text-blue-500 text-5xl" />
-            <p className="text-gray-700 font-medium">Creating your account...</p>
-            <p className="text-gray-500 text-sm">Please wait</p>
-          </div>
-        </div>
-      )}
-      
+    <div className='min-h-screen w-full bg-gray-100 shadow-lg flex items-center justify-center'>
       <div className='bg-white p-8 rounded shadow-md w-full max-w-md'>
         <h1 className='text-2xl font-semibold mb-6 text-center'>Signup Page</h1>
         
@@ -198,9 +187,16 @@ const Signup = () => {
           <button
             type='submit'
             disabled={isLoading}
-            className='w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed'
+            className='w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
           >
-            Sign Up
+            {isLoading ? (
+              <>
+                <FaSpinner className="animate-spin" />
+                <span>Signing up...</span>
+              </>
+            ) : (
+              <span>Sign Up</span>
+            )}
           </button>
         </form>
         
